@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@pylonbot/runtime": "https://gitpkg.now.sh/pylonbot/pylon-sdk-types/runtime",
+    "@pylonbot/runtime-discord": "https://gitpkg.now.sh/pylonbot/pylon-sdk-types/runtime-discord",
+    "@rollup/plugin-typescript": "^8.3.2",
+    "@types/node-fetch": "^2.5.0",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.3"
+  },
+  "dependencies": {
+    "@types/node": "^17.0.25",
+    "chalk": "^3.0.0",
+    "dotenv": "^16.0.0",
+    "node-fetch": "^2.5.0",
+    "pariah": "^2.5.5",
+    "rollup": "^2.70.2",
+    "ws": "^8.5.0"
+  }
+}
