@@ -75,7 +75,7 @@ function connect(url, reconnect = false) {
   ws.onerror = console.error;
   ws.onclose = () => {
     console.log(chalk_1.default.redBright("🔌 Disconnected from Pylon"));
-    setTimeout(() => connect(url), 50);
+    setTimeout(() => connect(url, true), 50);
   };
 }
 pylon("\\dist\\bundle.js");
