@@ -62,9 +62,15 @@ function connect(url, reconnect = false) {
       console.log(chalk_1.default.green("🔍 Connected to Pylon"));
     }
   };
+  const col = {
+    error: chalk_1.default.redBright,
+    warn: chalk_1.default.yellowBright,
+    info: chalk_1.default.blueBright,
+    debug: chalk_1.default.gray,
+  };
   ws.onmessage = (event) => {
     const [data] = JSON.parse(event.data);
-    console[data.method](data);
+    console.log(col[data.method](data.data[0]));
   };
   ws.onerror = console.error;
   ws.onclose = () => {
