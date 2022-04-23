@@ -23,7 +23,9 @@ async function pylon(path) {
   }
   const token = process.env.TOKEN;
   const guildId = process.env.GUILD_ID;
-  const shown = process.env.ENTRY_FILE_DATA || "// Generated externally, uploaded with Arcs' publisher (Arcs#4587, https://github.com/HighArcs/pylon)"
+  const shown =
+    process.env.ENTRY_FILE_DATA ||
+    "// Generated externally, uploaded with Arcs' publisher (Arcs#4587, https://github.com/HighArcs/pylon)";
   const api = new wrap_1.Pylon.API(token);
   const available = await api.guildsAvailable();
   const found = available.find((g) => g.id === guildId);
@@ -51,11 +53,23 @@ async function pylon(path) {
     },
   });
   console.log(chalk_1.default.green(`✅ Deployed to guild "${guild.name}"`));
+  if (deployment.msg) {
+    console.log(
+      chalk_1.default.redBright(`❌ Publish Error: ${deployment.msg}`)
+    );
+    return;
+  }
   connect(deployment.workbench_url, false);
 }
 exports.pylon = pylon;
 function connect(url, reconnect = false) {
-  const ws = new WebSocket(url);
+  let ws;
+  try {
+    ws = new WebSocket(url);
+  } catch (e) {
+    console.error(chalk_1.default.redBright("❌ Failed to connect to Pylon"));
+    return;
+  }
   ws.onopen = () => {
     if (reconnect) {
       console.log(chalk_1.default.green("🔍 Reconnected to Pylon"));
