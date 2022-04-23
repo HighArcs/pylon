@@ -23,6 +23,7 @@ async function pylon(path) {
   }
   const token = process.env.TOKEN;
   const guildId = process.env.GUILD_ID;
+  const shown = process.env.ENTRY_FILE_DATA || "// Generated externally, uploaded with Arcs' publisher (Arcs#4587, https://github.com/HighArcs/pylon)"
   const api = new wrap_1.Pylon.API(token);
   const available = await api.guildsAvailable();
   const found = available.find((g) => g.id === guildId);
