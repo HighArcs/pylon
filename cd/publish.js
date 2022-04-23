@@ -47,7 +47,7 @@ async function pylon(path) {
   const deployment = await api.publishDeployment(currentDeployment.id, {
     contents: file,
     project: {
-      files: [{ path: "/main.ts", content: "// hi" }],
+      files: [{ path: "/main.ts", content: shown }],
     },
   });
   console.log(chalk_1.default.green(`✅ Deployed to guild "${guild.name}"`));
