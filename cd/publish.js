@@ -14,7 +14,7 @@ const WebSocket = require("ws");
 const wrap_1 = require("./wrap");
 dotenv_1.default.config();
 async function pylon(path) {
-  log("blueBright", "⚙ Bundling script");
+  log("blueBright", `⚙ Bundling script from '${path}'`);
   const file = node_fs_1.default.readFileSync(process.cwd() + path, "utf8");
   if (file) {
     log("blueBright", `📦 Bundle success (${file.length} bytes)`);
@@ -42,7 +42,7 @@ async function pylon(path) {
   const deployment = await api.publishDeployment(currentDeployment.id, {
     contents: file,
     project: {
-      files: [{ path: "/main.ts", content: shown }],
+      files: [{ path: "/main.ts", content: shown + "\n" + file }],
     },
   });
   log("greenBright", `✅ Deployed to guild "${guild.name}"`);
@@ -91,4 +91,4 @@ function log(color, ...args) {
     chalk_1.default[color](...args)
   );
 }
-pylon("\\dist\\bundle.js");
+pylon("/" + (process.env.BUNDLE || "dist/bundle.js"));
