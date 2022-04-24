@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Pylon = void 0;
+const chalk = require("chalk");
 const pariah_1 = require("pariah");
 var Pylon;
 (function (Pylon) {
@@ -10,6 +11,12 @@ var Pylon;
     constructor(token) {
       super(Pylon.Url, { headers: { Authorization: token } });
       this.token = token;
+      const payload = this.get.text("/user/guilds/available").then(() => {
+        if (payload === "unauthorized") {
+          console.error(chalk.redBright("🔒 Pylon Token Unauthorized"));
+          process.exit(1);
+        }
+      });
     }
     async user() {
       return this.get.json("/user");
