@@ -59,7 +59,7 @@ export declare module Pylon {
         premium_tier: number;
         premium_subscription_count: number;
         unavailable: boolean;
-        deployments: Array<Exclude<Deployment, "project">>;
+        deployments: Array<Exclude<Deployment, "script">>;
     }
     interface GuildPayload {
         id: string;
